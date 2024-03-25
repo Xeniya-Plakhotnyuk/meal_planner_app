@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const router = require('./mealRoutes')
 
 const mongoose = require('mongoose')
 require('dotenv').config()
@@ -11,6 +12,8 @@ mongoose
 .connect(process.env.MONGODB_LINK)
 .then(() => console.log(`We are CONNECTED!`))
 .catch((err) => console.log(err))
+
+app.use(router)
 
 
 app.listen(PORT, () =>{
