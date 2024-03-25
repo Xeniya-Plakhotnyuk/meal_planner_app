@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
-const router = require('./mealRoutes')
-
 const mongoose = require('mongoose')
+const router = require('./mealRoutes')
+const cors = require('cors')
+
 require('dotenv').config()
 mongoose.set('strictQuery', false)
 
 const PORT = 4000 || process.env.port
+
+app.use(express.json())
+app.use(cors())
 
 mongoose
 .connect(process.env.MONGODB_LINK)
